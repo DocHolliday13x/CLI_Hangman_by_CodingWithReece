@@ -172,10 +172,7 @@ if __name__ == "__main__":
     while not game_over(wrong_guesses, target_word, guessed_letters):
         draw_hanged_man(wrong_guesses)
         print(f"Your word is: {guessed_word}")
-        print(
-            "Current Guessed Letters: "
-            f"{join_guessed_letters(guessed_letters)}\n"
-        )
+        print("Current Guessed Letters:", join_guessed_letters(guessed_letters))  #! Modified this line to stop it from sending "Better luck next time, your word was "blank" after every user input.
 
         player_guess = get_player_input(guessed_letters)
         if player_guess in target_word:
@@ -187,11 +184,11 @@ if __name__ == "__main__":
         guessed_letters.add(player_guess)
         guessed_word = build_guessed_word(target_word, guessed_letters)
 
-        # Game over trigger
-        draw_hanged_man(wrong_guesses)
-        if wrong_guesses == MAX_GUESSES:
-            print("Better luck next time!")
-        else:
-            print("You did it! Congratulations!")
-        print(f"Better luck next time, your word was: {target_word}")
+    # Game over trigger
+    draw_hanged_man(wrong_guesses)
+    if wrong_guesses == MAX_GUESSES:
+        print("You have chosen... poorly.") #? Might change this up so it's not saying "better luck next time" x 2
+    else:
+        print("You did it! Congratulations!")
+    print(f"Better luck next time, your word was: {target_word}") #! It's still throwing this output even when the word is guessed correctly. Must fix
 
